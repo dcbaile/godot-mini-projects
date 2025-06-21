@@ -1,23 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://n40qfbfvrig0"]
+[gd_scene load_steps=4 format=3 uid="uid://n40qfbfvrig0"]
 
-[ext_resource type="Material" uid="uid://clw4gwbhx1fn" path="res://Balloon Popper/Material/BalloonMaterial.tres" id="1_q8bdi"]
-[ext_resource type="Script" uid="uid://dk2kc616m0n18" path="res://Balloon Popper/Balloon.gd" id="1_sjruf"]
+[ext_resource type="Script" uid="uid://dbdntqcp0a6h6" path="res://Balloon Popper/BalloonManager.gd" id="1_xylen"]
+[ext_resource type="PackedScene" uid="uid://fg1dmy58wyjx" path="res://Balloon Popper/balloon.tscn" id="2_sjruf"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_q8bdi"]
+[sub_resource type="LabelSettings" id="LabelSettings_sjruf"]
+font_size = 30
 
-[sub_resource type="SphereMesh" id="SphereMesh_q8bdi"]
+[node name="Main" type="Node3D" node_paths=PackedStringArray("score_text")]
+script = ExtResource("1_xylen")
+score_text = NodePath("ScoreText")
 
-[node name="Main" type="Node3D"]
+[node name="Balloon" parent="." instance=ExtResource("2_sjruf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.14551, 0.55703, -0.285122)
+clicks_to_pop = 2
 
-[node name="Balloon" type="Area3D" parent="."]
-script = ExtResource("1_sjruf")
+[node name="Balloon2" parent="." instance=ExtResource("2_sjruf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.18551, 0.306154, 0.0789671)
+clicks_to_pop = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Balloon"]
-shape = SubResource("SphereShape3D_q8bdi")
-
-[node name="Model" type="MeshInstance3D" parent="Balloon"]
-material_override = ExtResource("1_q8bdi")
-mesh = SubResource("SphereMesh_q8bdi")
+[node name="Balloon3" parent="." instance=ExtResource("2_sjruf")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.96446)
@@ -27,4 +28,10 @@ fov = 80.7612
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.420244, 0.907411, 0, -0.907411, 0.420244, 0, 2.04129, 0.696337)
 
-[connection signal="input_event" from="Balloon" to="Balloon" method="_on_input_event"]
+[node name="ScoreText" type="Label" parent="."]
+offset_left = 30.0
+offset_top = 28.0
+offset_right = 208.0
+offset_bottom = 76.0
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_sjruf")
