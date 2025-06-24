@@ -1,0 +1,56 @@
+[gd_scene load_steps=11 format=3 uid="uid://igjg4upu3au"]
+
+[ext_resource type="Script" uid="uid://c7224bsxmlihj" path="res://Collision/PlayerMovement.gd" id="1_lfjuc"]
+[ext_resource type="Texture2D" uid="uid://4qs3017awta7" path="res://icon.svg" id="2_d2tq1"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_16e6v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_venxd"]
+albedo_color = Color(7.70092e-07, 0.738933, 0.989084, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1icg3"]
+albedo_texture = ExtResource("2_d2tq1")
+
+[sub_resource type="SphereMesh" id="SphereMesh_hurpe"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_lfjuc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hurpe"]
+albedo_color = Color(0.586448, 0, 0.140445, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_d2tq1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hurpe"]
+size = Vector3(0.645447, 2.05761, 0.798096)
+
+[node name="RigidBody3D" type="RigidBody3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+center_of_mass_mode = 1
+script = ExtResource("1_lfjuc")
+
+[node name="Torso" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.534369, 0.00916736, -0.0023296, -0.00417637, 1.17253, 0.000400044, 0.00224541, -0.000806464, 0.555149, 0, 1.46735, 0)
+mesh = SubResource("BoxMesh_16e6v")
+surface_material_override/0 = SubResource("StandardMaterial3D_venxd")
+
+[node name="head" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.37761, 0)
+material_override = SubResource("StandardMaterial3D_1icg3")
+mesh = SubResource("SphereMesh_hurpe")
+
+[node name="Snowboard" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.17392, 0, 0, 0, 0.0365501, 0, 0, 0, 0.794175, 0, 0.839378, 0)
+mesh = SubResource("BoxMesh_lfjuc")
+surface_material_override/0 = SubResource("StandardMaterial3D_hurpe")
+
+[node name="Left Arm" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.51505e-09, 0.0982802, 0.654579, 0, 0.135271, -0.475579, -0.103293, -4.29596e-09, -2.86125e-08, 0.463086, 1.43893, 0)
+mesh = SubResource("BoxMesh_d2tq1")
+
+[node name="Right Arm" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.0117023, 0.112488, -0.776197, -9.49639e-09, -0.155418, -0.566092, -0.133758, -0.00984138, 0.067908, -0.53568, 1.45394, 0)
+mesh = SubResource("BoxMesh_d2tq1")
+
+[node name="Hitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(4.89192, 0, 0, 0, 1, 0, 0, 0, 1.26872, -0.0028365, 1.79274, 0.0184299)
+shape = SubResource("BoxShape3D_hurpe")
