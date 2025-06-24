@@ -1,9 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://cclhpj24uyapc"]
+[gd_scene load_steps=3 format=3 uid="uid://cclhpj24uyapc"]
 
 [ext_resource type="Script" uid="uid://dcuut1bx1gew4" path="res://Loops/loops.gd" id="1_0d46d"]
+[ext_resource type="PackedScene" uid="uid://b3q0upkoqf4fr" path="res://Loops/star.tscn" id="2_eq5x3"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_0d46d")
+spawn_count = 500
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
+
+[node name="Star" parent="." instance=ExtResource("2_eq5x3")]
+position = Vector2(-4, -143)
